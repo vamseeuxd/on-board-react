@@ -38,7 +38,7 @@ class DefaultHeader extends Component {
 
           <UncontrolledDropdown nav direction="down" className="mr-3">
             <DropdownToggle nav>Manage Masters <i className="fa fa-chevron-down"/></DropdownToggle>
-            <DropdownMenu left>
+            <DropdownMenu left="true">
               <DropdownItem>Manage Masters 1<Badge color="info">30</Badge></DropdownItem>
               <DropdownItem>Manage Masters 2<Badge color="success">60</Badge></DropdownItem>
               <DropdownItem>Manage Masters 3<Badge color="danger">20</Badge></DropdownItem>
@@ -48,7 +48,7 @@ class DefaultHeader extends Component {
 
           <UncontrolledDropdown nav direction="down" className="mr-3">
             <DropdownToggle nav>Reports <i className="fa fa-chevron-down"/></DropdownToggle>
-            <DropdownMenu left>
+            <DropdownMenu left="true">
               <DropdownItem>Reports 1<Badge color="info">33</Badge></DropdownItem>
               <DropdownItem>Reports 2<Badge color="success">65</Badge></DropdownItem>
               <DropdownItem>Reports 3<Badge color="danger">23</Badge></DropdownItem>
