@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import {verifyGoogleLogin} from "../../../store/authentication/acions";
+import {connect} from "react-redux";
+import GoogleLogin from "react-google-login";
 
 class Login extends Component {
   render() {
+    const props = this.props;
     return (
       <div className="app flex-row align-items-center">
         <Container>
@@ -38,6 +42,15 @@ class Login extends Component {
                         <Col xs="6" className="text-right">
                           <Button color="link" className="px-0">Forgot password?</Button>
                         </Col>
+                        <Col xs="12" className="text-center mt-4">
+                          <GoogleLogin
+                            clientId="1020592783279-dib7nfhpbecp4gluf277pkj072shfqaj.apps.googleusercontent.com"
+                            buttonText="Login with Google"
+                            theme="dark"
+                            onSuccess={googleLoginResponse => props.verifyGoogleLogin(googleLoginResponse, props.history)}
+                            cookiePolicy={'single_host_origin'}
+                          />
+                        </Col>
                       </Row>
                     </Form>
                   </CardBody>
@@ -63,4 +76,14 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.isAuthenticated
+  };
+}
+
+const mapDispatchToProps = dispatch => ({
+  verifyGoogleLogin: (googleLoginResponse, history) => dispatch(verifyGoogleLogin(googleLoginResponse, history))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
