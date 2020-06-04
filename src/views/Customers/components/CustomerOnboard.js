@@ -105,7 +105,7 @@ class CustomerOnboard extends React.Component {
   onChangeHandler = function (e) {
     e.persist();
     if (e.target.type == "radio") {
-      global.state.jsonValues[e.target.name] = e.target.value;
+      this.state.jsonValues[e.target.name] = e.target.value;
     } else if(e.target.type=="select-one"){
       let selectId = e.target.id;
       if(selectId.indexOf("country")>=0){
@@ -121,7 +121,7 @@ class CustomerOnboard extends React.Component {
       }      
       this.state.jsonValues[e.target.id] = e.target.value;   
     } else {
-      global.state.jsonValues[e.target.id] = e.target.value;
+      this.state.jsonValues[e.target.id] = e.target.value;
     }
   }
 

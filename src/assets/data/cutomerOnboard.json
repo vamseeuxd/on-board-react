@@ -291,12 +291,14 @@
                     {
                       "label": "Apply",
                       "name": "save",
-                      "type": "button"
+                      "type": "button",
+                      "colWidth": "col-md-1"
                     },
                     {
                       "label": "Exit",
                       "name": "exit",
-                      "type": "button"
+                      "type": "button",
+                      "colWidth": "col-md-1"
                     }
                   ]
                 }

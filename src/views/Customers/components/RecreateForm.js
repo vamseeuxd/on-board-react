@@ -22,7 +22,9 @@ class RecreateForm extends React.Component {
     return (
       <div>
           {formfield}
-          <button onClick={this.props.remove} style={{margin:10}} type="button" >Remove</button>
+          <div className="form-row mb-3"><button onClick={this.props.remove} 
+                  type="button" 
+                  className="btn btn-primary mr-3">Remove</button></div>
       </div>
     );
   }

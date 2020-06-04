@@ -76,8 +76,17 @@ class CreatePage extends React.Component {
                               ref={refVal}>
                                 {this.props.addrecreateDiv(refVal)}
                           </div>);
-              items.push(<button onClick={()=>this.props.addElements(linesList, refVal)} style={mystyle}
-              type="button" >{section.recreatelabel}</button>);
+             // items.push(<button onClick={()=>this.props.addElements(linesList, refVal)} style={mystyle}
+              //type="button" >{section.recreatelabel}</button>);
+
+              items.push(
+                <button onClick={()=>this.props.addElements(linesList, refVal)}
+                        className="btn btn-primary mr-3"                      
+                        type="button">
+                  {section.recreatelabel}
+                </button>
+                );
+
               items.push(<br/>);
           }
         });//Sections End

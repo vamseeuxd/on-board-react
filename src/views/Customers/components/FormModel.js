@@ -173,7 +173,7 @@ class FormModel extends React.Component {
     });
 
     return (
-      <div className="form-row mb-5">
+      <div className="form-row mb-3">
         {formfields}
       </div>
     );
