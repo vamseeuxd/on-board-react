@@ -16,6 +16,7 @@ class FormModel extends React.Component {
     };
     Object.keys(arr).map((field, index) => {
       let fieldData = arr[field];
+      let fieldId = fieldData.name + this.props.uniqueId;
       /*if (fieldData.type != "button") {
         formfields.push(<label style={mystyle}>{fieldData.label}</label>);
       }*/
@@ -23,13 +24,13 @@ class FormModel extends React.Component {
         case('text'):
           formfields.push(
             <div className={'form-group ' + fieldData.colWidth}>
-              <label htmlFor={fieldData.name}>{fieldData.label}</label>
+              <label htmlFor={fieldId}>{fieldData.label}</label>
               <input className="form-control"
                      type={fieldData.type}
                      required={fieldData.required}
-                     id={fieldData.name}
-                     name={fieldData.name}
-                     ref={fieldData.name}
+                     id={fieldId}
+                     name={fieldId}
+                     ref={fieldId}
                      onChange={this.props.changed}
                      defaultValue={fieldData.value}/>
             </div>
@@ -38,13 +39,13 @@ class FormModel extends React.Component {
         case('textarea'):
           formfields.push(
             <div className={'form-group ' + fieldData.colWidth}>
-              <label htmlFor={fieldData.name}>{fieldData.label}</label>
+              <label htmlFor={fieldId}>{fieldData.label}</label>
               <textarea className="form-control"
                         defaultValue={fieldData.value}
                         required={fieldData.required}
-                        id={fieldData.name}
-                        name={fieldData.name}
-                        ref={fieldData.name}
+                        id={fieldId}
+                        name={fieldId}
+                        ref={fieldId}
                         onChange={this.props.changed}/>
             </div>
           );
@@ -55,7 +56,7 @@ class FormModel extends React.Component {
               <label className="d-block mb-3">{fieldData.label}</label>
               {
                 Object.values(fieldData.values).map((value, _index) => {
-                  var ids = fieldData.name + _index;
+                  var ids = fieldId + _index;
                   let val = fieldData.value;
                   let checkFlag = false;
                   if (val && val === fieldData.values[index]) {
@@ -67,9 +68,9 @@ class FormModel extends React.Component {
                              type="radio"
                              onChange={this.props.changed}
                              defaultValue={value}
-                             name={fieldData.name}
+                             name={fieldId}
                              id={ids}
-                             ref={fieldData.name}
+                             ref={fieldId}
                              defaultChecked={checkFlag}/>
                       <label className="form-check-label"
                              for={ids}>
@@ -115,22 +116,22 @@ class FormModel extends React.Component {
           if (typeof fieldData.dependent != 'undefined' && fieldData.dependent) {
             formfields.push(
               <div className={'form-group ' + fieldData.colWidth}>
-                <label htmlFor={fieldData.name}>{fieldData.label}</label>
-                <select ref={fieldData.name}
-                        id={fieldData.name}
+                <label htmlFor={fieldId}>{fieldData.label}</label>
+                <select ref={fieldId}
+                        id={fieldId}
                         onChange={this.props.changed}
                         className="form-control">
-                  {this.props.stateOptions}
+                  {this.props.stateOptions[fieldId]}
                 </select>
               </div>
             );
           } else {
             formfields.push(
               <div className={'form-group ' + fieldData.colWidth}>
-                <label htmlFor={fieldData.name}>{fieldData.label}</label>
-                <select ref={fieldData.name}
+                <label htmlFor={fieldId}>{fieldData.label}</label>
+                <select ref={fieldId}
                         className="form-control"
-                        id={fieldData.name}
+                        id={fieldId}
                         onChange={this.props.changed}
                         style={mystyle}>
                   {options}
@@ -146,7 +147,7 @@ class FormModel extends React.Component {
               <div className={'my-auto ' + fieldData.colWidth}>
                 <button onClick={this.props.searchHandler}
                         className="btn btn-primary mt-2"
-                        id={fieldData.name}
+                        id={fieldId}
                         type={fieldData.type}>
                   {fieldData.label}
                 </button>
@@ -157,7 +158,7 @@ class FormModel extends React.Component {
               <div className={'my-auto ' + fieldData.colWidth}>
                 <button onClick={fieldData.clicked}
                         className="btn btn-primary mt-2"
-                        id={fieldData.name}
+                        id={fieldId}
                         type={fieldData.type}>
                   {fieldData.label}
                 </button>

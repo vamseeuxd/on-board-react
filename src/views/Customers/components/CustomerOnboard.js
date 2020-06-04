@@ -17,7 +17,7 @@ class CustomerOnboard extends React.Component {
       customerOnboardJson: this.props.json,
       recreateArray: [],
       jsonValues: {},
-      stateOptions: [],
+      stateOptions: {},
       redirect: false,
       currentPageId: 0
     };
@@ -30,7 +30,7 @@ class CustomerOnboard extends React.Component {
     this.PageLength = 0;
     this.PageList = [];
     this.defaultStates = [];
-    global = this;
+    this.onChangeHandler = this.onChangeHandler.bind(this);
   }
 
   async verifyUser() {
@@ -64,24 +64,23 @@ class CustomerOnboard extends React.Component {
     }
     let divId = refVal + arr.length;
     let removeId = arr.length;
+    this.state.stateOptions["state"+removeId] = this.defaultStates;
     arr.push(<RecreateForm data={lines}
-                           defaultStates={this.defaultStates}
-                           changed={this.onChangeHandler}
-                           id={divId}
-                           uniqueId={arr.length}
-                           remove={() => this.removeElement(lines, refVal, removeId)}/>);
+                            stateOptions ={this.state.stateOptions}
+                            changed={this.onChangeHandler} 
+                            uniqueId ={arr.length}
+                            remove={()=>this.removeElement(lines,refVal,removeId)}/>);   
 
     let processFields = validator.addFields(lines, removeId);
-    this.addedReqFields = [...this.addedReqFields, ...processFields.reqFields];
-    this.addedFields = [...this.addedFields, ...processFields.allFields];
+    this.addedReqFields = [...this.addedReqFields,...processFields.reqFields];
+    this.addedFields = [...this.addedFields,...processFields.allFields];
     let prevJsonvalues = this.state.jsonValues;
     let newJsonValues = {};
-    Object.assign(newJsonValues, prevJsonvalues, processFields.defaultValues);
+    Object.assign(newJsonValues, prevJsonvalues, processFields.defaultValues);     
     this.recreateLines[refVal][removeId] = processFields.addedLines;
     this.state[refVal].push(arr);
-    this.setState({[refVal]: arr});
-    this.state.jsonValues = newJsonValues;
-    this.setState({jsonValues: newJsonValues});
+    this.state.jsonValues = newJsonValues;     
+    this.setState({[refVal]:arr,jsonValues:newJsonValues});
   };
 
   removeElement = (lines, refVal, removeId) => {
@@ -100,16 +99,27 @@ class CustomerOnboard extends React.Component {
     this.addedFields = [...processFields.allFields];
     Object.assign(this.state.jsonValues, this.state.jsonValues, processFields.defaultValues);
     delete this.recreateLines[refVal][removeId];
+    delete this.state.stateOptions["state"+removeId];
   };
 
   onChangeHandler = function (e) {
     e.persist();
     if (e.target.type == "radio") {
       global.state.jsonValues[e.target.name] = e.target.value;
-    } else if (e.target.type == "select-one" && e.target.id == "country") {
-      let state = global.getStates(e.target.value);
-      global.setState({stateOptions: state});
-      global.state.jsonValues[e.target.id] = e.target.value;
+    } else if(e.target.type=="select-one"){
+      let selectId = e.target.id;
+      if(selectId.indexOf("country")>=0){
+        var stateId = "state"+selectId.replace("country", "");
+        let state = this.getStates(e.target.value);
+
+        var stateProperty = {...this.state.stateOptions}
+        stateProperty[stateId] = state;
+        this.state.stateOptions = stateProperty;
+        this.setState({stateOptions:stateProperty});
+        
+        console.log(this.state.stateOptions)
+      }      
+      this.state.jsonValues[e.target.id] = e.target.value;   
     } else {
       global.state.jsonValues[e.target.id] = e.target.value;
     }
@@ -208,19 +218,19 @@ class CustomerOnboard extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({jsonValues: this.defaultValues});
-    let linesobj = {};
+    let linesobj ={};
     Object.keys(this.state.recreateArray).map((recreateIndex, index) => {
       linesobj[this.state.recreateArray[index]] = {};
       Object.assign(this.recreateLines, this.recreateLines, linesobj);
     });
     let statesList = states.US;
     this.defaultStates = [];
-    statesList.map((stateKey, key) => {
-      let state = statesList[key];
-      this.defaultStates.push(<option value={state.value}>{state.label}</option>);
-    });
-    this.state.stateOptions = this.defaultStates;
+        statesList.map((stateKey, key) =>{
+           let state = statesList[key];
+           this.defaultStates.push(<option value={state.value}>{state.label}</option>);
+        }); 
+    this.state.stateOptions["state"] = this.defaultStates;
+    this.setState({ jsonValues: this.defaultValues });
   }
 
   renderPage = (Page, PageId, PageLength) => {
