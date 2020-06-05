@@ -1,4 +1,6 @@
 import React from 'react';
+import Search from "./views/Search/Search";
+
 const Dashboard = React.lazy(() => import('./views/Dashboard/Dashboard'));
 const Applications = React.lazy(() => import('./views/Applications/Applications'));
 const Application = React.lazy(() => import('./views/Applications/Application'));
@@ -20,6 +22,7 @@ const routes = [
   {path: '/businesses/:id', exact: true, name: 'Business Details', component: Business},
   {path: '/products', exact: true, name: 'Products', component: Products},
   {path: '/products/:id', exact: true, name: 'Product Details', component: Product},
+  {path: '/search', exact: true, name: 'Search', component: Search},
   /*  --------------------------------------  */
 ];
 

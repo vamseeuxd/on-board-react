@@ -26,6 +26,7 @@ export default {
     },
     {
       name: 'Search',
+      url: '/search',
       icon: 'icon-magnifier'
     },
     {
