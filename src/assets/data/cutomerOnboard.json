@@ -3,7 +3,7 @@
   "PageList": [
     {
       "PageTitle": "Cusomter Details",
-      "PageID": "xyz1001",
+      "PageID": "CUST_ON_BOARD_001",
       "CategoryList": [
         {
           "categoryTitle": "Principle/Customer Details",
@@ -222,7 +222,7 @@
     },
     {
       "PageTitle": "Product Details",
-      "PageID": "xyz1002",
+      "PageID": "CUST_ON_BOARD_002",
       "CategoryList": [
         {
           "categoryTitle": "Product onboard",
