@@ -19,6 +19,33 @@ import {verifyGoogleLogin} from "../../../store/authentication/acions";
 import GoogleLogin from 'react-google-login';
 
 class Register extends Component {
+
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      form: {
+        username: '123ASD',
+        role: 'RM',
+        email: '',
+        password: '',
+        repeatPassword: '',
+      }
+    }
+    this.updateFormValue = this.updateFormValue.bind(this);
+    this.getRolesOptions = this.getRolesOptions.bind(this);
+  }
+
+  getRolesOptions() {
+    return this.props.rolesList.map(role => <option value={Object.keys(role)[0]}
+                                                    key={Object.keys(role)[0]}>{Object.keys(role)[0]}</option>)
+  }
+
+  updateFormValue(controlName, controlValue) {
+    const form = this.state.form;
+    form[controlName] = controlValue;
+    this.setState({form});
+  }
+
   render() {
     const props = this.props;
     return (
@@ -46,30 +73,38 @@ class Register extends Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input type="text"
+                             onChange={(event) => this.updateFormValue(event.target.id, event.target.value)}
+                             id="username"
+                             defaultValue={this.state.form.username}
                              placeholder="Username"
-                             autoComplete="username"/>
+                             autoComplete="off"/>
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="icon-user"></i>
+                          <i className="icon-shield"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                       <select>
-                         <option>Select Role</option>
-                         <option>RM</option>
-                         <option>UnderWriter</option>
-                         <option>BasicUser</option>
-                         <option>Admin</option>
-                       </select>
+                      <Input type="select"
+                             onChange={(event) => this.updateFormValue(event.target.id, event.target.value)}
+                             id="role"
+                             defaultValue={this.state.form.role}
+                             autoComplete="off"
+                             name="select">
+                        <option value="">Select Role</option>
+                        {this.getRolesOptions()}
+                      </Input>
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>@</InputGroupText>
                       </InputGroupAddon>
                       <Input type="text"
+                             onChange={(event) => this.updateFormValue(event.target.id, event.target.value)}
+                             id="email"
+                             defaultValue={this.state.form.email}
                              placeholder="Email"
-                             autoComplete="email"/>
+                             autoComplete="off"/>
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
@@ -78,8 +113,11 @@ class Register extends Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input type="password"
+                             onChange={(event) => this.updateFormValue(event.target.id, event.target.value)}
+                             id="password"
+                             defaultValue={this.state.form.password}
                              placeholder="Password"
-                             autoComplete="new-password"/>
+                             autoComplete="off"/>
                     </InputGroup>
                     <InputGroup className="mb-4">
                       <InputGroupAddon addonType="prepend">
@@ -88,8 +126,11 @@ class Register extends Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input type="password"
+                             onChange={(event) => this.updateFormValue(event.target.id, event.target.value)}
+                             id="repeatPassword"
+                             defaultValue={this.state.form.repeatPassword}
                              placeholder="Repeat password"
-                             autoComplete="new-password"/>
+                             autoComplete="off"/>
                     </InputGroup>
                     <Button color="success"
                             block>Create Account</Button>
@@ -125,7 +166,8 @@ class Register extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.isAuthenticated
+    isAuthenticated: state.authentication.isAuthenticated,
+    rolesList: state.role.rolesList,
   };
 }
 

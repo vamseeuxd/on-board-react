@@ -6,7 +6,6 @@ const initialState = {
 };
 
 function reducer(state = initialState, action) {
-  debugger;
   switch (action.type) {
     case AUTHENTICATED:
       return {
