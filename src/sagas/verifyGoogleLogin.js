@@ -11,16 +11,16 @@ function* verifyGoogleLoginEffect(action) {
     const id_token = action.googleLoginResponse.getAuthResponse().id_token;
     debugger;
     const history = action.history;
-    yield put(authenticated(true, action.googleLoginResponse.profileObj));
-    history.push('/dashboard');
-    /*const response = yield call(verifyGoogleLogin, id_token);
+    /*yield put(authenticated(true, action.googleLoginResponse.profileObj));
+    history.push('/dashboard');*/
+    const response = yield call(verifyGoogleLogin, id_token);
     if (response.data.status) {
       localStorage.setItem('login_session_token', id_token);
       yield put(authenticated(true));
       history.push('/dashboard');
     } else {
       yield put(authenticated(false));
-    }*/
+    }
   } catch (e) {
     yield put(authenticated(false));
   }
