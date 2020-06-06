@@ -23,16 +23,7 @@
                       "value": ""
                     },
                     {
-                      "label": "Date Of Birth",
-                      "name": "dob",
-                      "colWidth": "col-md-4",
-                      "type": "text",
-                      "required": true,
-                      "validation": "date",
-                      "value": ""
-                    },
-                    {
-                      "label": "Click here if you are already customer to the bank",
+                      "label": "Click here if you are already a customer to the bank",
                       "name": "search",
                       "colWidth": "col-md-4",
                       "type": "button",
