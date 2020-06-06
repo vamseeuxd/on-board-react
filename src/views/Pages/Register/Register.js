@@ -23,9 +23,11 @@ class Register extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
+      disableCreatAccount: true,
+      disableGoogleRegistration: true,
       form: {
-        username: '123ASD',
-        role: 'RM',
+        username: '',
+        role: '',
         email: '',
         password: '',
         repeatPassword: '',
@@ -43,7 +45,9 @@ class Register extends Component {
   updateFormValue(controlName, controlValue) {
     const form = this.state.form;
     form[controlName] = controlValue;
-    this.setState({form});
+    const disableCreatAccount = Object.values(form).filter(value => value.trim().length == '').length > 0;
+    const disableGoogleRegistration = form.role.trim().length == 0;
+    this.setState({form, disableCreatAccount, disableGoogleRegistration});
   }
 
   render() {
@@ -69,7 +73,7 @@ class Register extends Component {
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="icon-user"></i>
+                          <i className="icon-user"></i> <span className="text-danger">*</span>
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input type="text"
@@ -82,7 +86,7 @@ class Register extends Component {
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="icon-shield"></i>
+                          <i className="icon-shield"></i> <span className="text-danger">*</span>
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input type="select"
@@ -97,7 +101,7 @@ class Register extends Component {
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
-                        <InputGroupText>@</InputGroupText>
+                        <InputGroupText>@ <span className="text-danger">*</span></InputGroupText>
                       </InputGroupAddon>
                       <Input type="text"
                              onChange={(event) => this.updateFormValue(event.target.id, event.target.value)}
@@ -109,7 +113,7 @@ class Register extends Component {
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="icon-lock"></i>
+                          <i className="icon-lock"></i> <span className="text-danger">*</span>
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input type="password"
@@ -122,7 +126,7 @@ class Register extends Component {
                     <InputGroup className="mb-4">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="icon-lock"></i>
+                          <i className="icon-lock"></i> <span className="text-danger">*</span>
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input type="password"
@@ -132,27 +136,30 @@ class Register extends Component {
                              placeholder="Repeat password"
                              autoComplete="off"/>
                     </InputGroup>
+                    <p className="text-muted">
+                      Please provide required <span className="text-danger">*</span> information to create an Account
+                    </p>
                     <Button color="success"
+                            disabled={this.state.disableCreatAccount}
                             block>Create Account</Button>
                   </Form>
                 </CardBody>
                 <CardFooter className="p-4">
                   <Row>
                     <Col xs="12"
-                         sm="6">
+                         sm="12">
+                      <p className="text-muted">
+                        Please Select a role to Register with Google
+                      </p>
                       <GoogleLogin
                         clientId="1020592783279-dib7nfhpbecp4gluf277pkj072shfqaj.apps.googleusercontent.com"
-                        buttonText="Login with Google"
+                        buttonText="Register with Google"
                         theme="dark"
+                        disabled={this.state.disableGoogleRegistration}
                         onSuccess={googleLoginResponse => props.verifyGoogleLogin(googleLoginResponse, props.history)}
                         cookiePolicy={'single_host_origin'}
                       />
                     </Col>
-                    {/*<Col xs="12"
-                         sm="6">
-                      <Button className="btn-twitter mb-1"
-                              block><span>TWITTER</span></Button>
-                    </Col>*/}
                   </Row>
                 </CardFooter>
               </Card>
