@@ -1,5 +1,5 @@
-import React, { Component, lazy, Suspense } from 'react';
-import { Bar, Line } from 'react-chartjs-2';
+import React, {Component, lazy, Suspense} from 'react';
+import {Bar, Line} from 'react-chartjs-2';
 import {
   Badge,
   Button,
@@ -20,8 +20,9 @@ import {
   Row,
   Table,
 } from 'reactstrap';
-import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
-import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities'
+import {CustomTooltips} from '@coreui/coreui-plugin-chartjs-custom-tooltips';
+import {getStyle, hexToRgba} from '@coreui/coreui/dist/js/coreui-utilities'
+import {PipeLineComponent} from "../../components/pipe-line-component/PipeLineComponent";
 
 const Widget03 = lazy(() => import('../../views/Widgets/Widget03'));
 
@@ -228,10 +229,10 @@ const cardChartOpts4 = {
 
 // Social Box Chart
 const socialBoxData = [
-  { data: [65, 59, 84, 84, 51, 55, 40], label: 'facebook' },
-  { data: [1, 13, 9, 17, 34, 41, 38], label: 'twitter' },
-  { data: [78, 81, 80, 45, 34, 12, 40], label: 'linkedin' },
-  { data: [35, 23, 56, 22, 97, 23, 64], label: 'google' },
+  {data: [65, 59, 84, 84, 51, 55, 40], label: 'facebook'},
+  {data: [1, 13, 9, 17, 34, 41, 38], label: 'twitter'},
+  {data: [78, 81, 80, 45, 34, 12, 40], label: 'linkedin'},
+  {data: [35, 23, 56, 22, 97, 23, 64], label: 'google'},
 ];
 
 const makeSocialBoxData = (dataSetNo) => {
@@ -416,8 +417,8 @@ const mainChartOpts = {
     mode: 'index',
     position: 'nearest',
     callbacks: {
-      labelColor: function(tooltipItem, chart) {
-        return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor }
+      labelColor: function (tooltipItem, chart) {
+        return {backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor}
       }
     }
   },
@@ -483,6 +484,74 @@ class Dashboard extends Component {
 
     return (
       <div className="animated fadeIn">
+        <Row>
+          <Col xs="12"
+               sm="12"
+               lg="12">
+            <Card className="text-white bg-info">
+              <CardBody className="pb-0">
+                <div className="row">
+                  <div className="col-8">
+                    <div className="chart-wrapper mx-3"
+                         style={{height: 'auto'}}>
+                      <h2>Hi Jennifer Lawrance</h2>
+                      <p>
+                        Here are summary statistics for the current month.
+                        Please use the Year and Month filter to see other months or year to date data.
+                      </p>
+
+                      <form className="form-inline">
+                        <div className="form-group mb-2 mr-3">
+                          <select className="form-control">
+                            <option>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option>
+                            <option>August</option>
+                            <option>September</option>
+                            <option>October</option>
+                            <option>November</option>
+                            <option>December</option>
+                          </select>
+                        </div>
+                        <div className="form-group mb-2">
+                          <select className="form-control">
+                            <option>2020</option>
+                            <option>2021</option>
+                            <option>2022</option>
+                            <option>2023</option>
+                            <option>2024</option>
+                            <option>2025</option>
+                            <option>2026</option>
+                          </select>
+                        </div>
+                      </form>
+
+
+                    </div>
+                  </div>
+                  <div className="col-4 text-right">
+                    <div className="text-value">451</div>
+                    <div><i className="fa fa-files-o"></i> Applications</div>
+                  </div>
+                </div>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+
+        <Row>
+          <Card>
+            <CardBody>
+              <h4 className="mb-2 border-bottom pb-4 text-muted">Status Pipeline</h4>
+              <PipeLineComponent></PipeLineComponent>
+            </CardBody>
+          </Card>
+        </Row>
+        {/*
         <Row>
           <Col xs="12" sm="6" lg="3">
             <Card className="text-white bg-info">
@@ -581,6 +650,7 @@ class Dashboard extends Component {
             </Card>
           </Col>
         </Row>
+
         <Row>
           <Col>
             <Card>
@@ -1121,6 +1191,7 @@ class Dashboard extends Component {
             </Card>
           </Col>
         </Row>
+        */}
       </div>
     );
   }

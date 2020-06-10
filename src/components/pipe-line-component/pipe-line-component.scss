@@ -1,0 +1,113 @@
+//colors
+$dodger_blue: dodgerblue;
+$color_regent_st_blue_approx: lightblue;
+$white: white;
+$circleDiameter: 6em;
+
+%extend_1 {
+  content: '';
+  width: 100%;
+  border: 2px solid $dodger_blue;
+  position: absolute;
+  top: $circleDiameter /2;
+  z-index: -1;
+}
+
+
+.pipe-line {
+  text-align: justify;
+  position: relative;
+  overflow: hidden;
+
+  /*&:before {
+    @extend %extend_1;
+  }*/
+
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+  }
+
+  li {
+    width: $circleDiameter;
+    height: $circleDiameter;
+    text-align: center;
+    line-height: $circleDiameter;
+    border-radius: 50%;
+    background: $dodger_blue;
+    margin: 0 $circleDiameter/4 $circleDiameter/3 $circleDiameter/4;
+    display: inline-block;
+    color: $white;
+    position: relative;
+
+    &:first-child {
+      &:before {
+        display: none;
+      }
+    }
+
+    &:last-child {
+      &:after {
+        display: none;
+      }
+    }
+
+    &:before {
+      content: '';
+      width: ($circleDiameter/4);
+      border: 2px solid $dodger_blue;
+      position: absolute;
+      top: calc(50% - 2px);
+      left: ($circleDiameter/4)*-1;
+    }
+
+    &:after {
+      content: '';
+      width: ($circleDiameter/4);
+      border: 2px solid $dodger_blue;
+      position: absolute;
+      top: calc(50% - 2px);
+      right: ($circleDiameter/4)*-1;
+    }
+
+    label {
+      position: absolute;
+      top: 0px;
+      background: rgba(255, 255, 0, 0);
+      left: 0px;
+      width: ($circleDiameter) + ($circleDiameter/2);
+      margin-left: ($circleDiameter/4) * -1;
+      border: 1px solid rgba(255, 255, 0, 0);;
+      text-align: center;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      span {
+        vertical-align: text-top;
+        display: inline-block;
+        margin-top: ($circleDiameter/1.5);
+        color: black;
+        line-height: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 20px;
+        width: 100%;
+      }
+    }
+  }
+
+  .active {
+    &:after {
+      @extend %extend_1;
+      border-color: $color_regent_st_blue_approx;
+    }
+
+    ~ li {
+      background: $color_regent_st_blue_approx;
+    }
+  }
+}
