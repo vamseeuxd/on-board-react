@@ -35,6 +35,7 @@ export default {
     },
     {
       name: "Bureau",
+      url: "/bureau",
       icon: "icon-people",
     },
     {
