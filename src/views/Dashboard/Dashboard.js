@@ -485,9 +485,7 @@ class Dashboard extends Component {
     return (
       <div className="animated fadeIn">
         <Row>
-          <Col xs="12"
-               sm="12"
-               lg="12">
+          <Col xs="12" sm="12" lg="12">
             <Card className="text-white bg-info">
               <CardBody className="pb-0">
                 <div className="row">
@@ -544,12 +542,14 @@ class Dashboard extends Component {
         </Row>
 
         <Row>
-          <Card>
-            <CardBody>
-              <h4 className="mb-2 border-bottom pb-4 text-muted">Status Pipeline</h4>
-              <PipeLineComponent></PipeLineComponent>
-            </CardBody>
-          </Card>
+          <Col xs="12" sm="12" lg="12">
+            <Card>
+              <CardBody>
+                <h4 className="mb-2 border-bottom pb-4 text-muted">Status Pipeline</h4>
+                <PipeLineComponent></PipeLineComponent>
+              </CardBody>
+            </Card>
+          </Col>
         </Row>
         {/*
         <Row>

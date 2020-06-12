@@ -27,11 +27,11 @@ export class PipeLineComponent extends Component {
   render() {
 
     return (
-      <ul className="pipe-line mt-4 position-relative">
+      <ul className="pipe-line position-relative w-100">
         {
           this.state.pipelineData.map(
             value => {
-              return <li title={value.label} className="position-relative">
+              return <li key={value.label} title={value.label} className="position-relative">
                 {value.value}
                 <label>
                   <span>{value.label}</span>

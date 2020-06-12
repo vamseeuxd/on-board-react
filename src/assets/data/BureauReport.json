@@ -1,0 +1,578 @@
+{
+    "requestId": "rrt-0f28532c04e441741-c-ea-26346-40677397-1",
+    "success": true,
+    "comments": "testing",
+    "results": {
+        "businessHeader": {
+            "bin": "800914632",
+            "businessName": "CROCKER INDUSTRIES",
+            "address": {
+                "street": "100 MAIN",
+                "city": "PHOENIX",
+                "state": "AZ",
+                "zip": "85032",
+                "zipExtension": null
+            },
+            "foreignCountry": false,
+            "phone": "+18887859790",
+            "taxId": null,
+            "websiteUrl": null,
+            "legalBusinessName": null,
+            "dbaNames": [],
+            "corporateLinkageIndicator": false,
+            "matchingBranchAddress": {},
+            "branchLocation": {},
+            "customerDisputeIndicator": true
+        },
+        "corporateRegistration": {
+            "originalFilingDate": null,
+            "recentFilingDate": null,
+            "incorporatedDate": null,
+            "existenceTermYears": null,
+            "existenceTermDate": null,
+            "federalTaxID": null,
+            "statusFlag": {},
+            "statusDescription": null,
+            "agentAddress": {
+                "zip": null
+            }
+        },
+        "businessFacts": {
+            "fileEstablishedFlag": {
+                "code": "P",
+                "definition": "Business was added prior to Jan 1977"
+            },
+            "fileEstablishedDate": "1977-01-01",
+            "dateOfIncorporation": null,
+            "businessType": "Corporation",
+            "nonProfitIndicator": false,
+            "publicIndicator": false,
+            "locationEmployeeSizeCode": null,
+            "yearsInBusinessIndicator": {
+                "code": "A",
+                "definition": "Under 1 Year"
+            },
+            "yearsInBusiness": null,
+            "locationEmployeeSize": null,
+            "salesSizeCode": null,
+            "locationSalesRevenue": null,
+            "employeeSizeCode": null,
+            "salesRevenue": null,
+            "employeeSize": null
+        },
+        "expandedCreditSummary": {
+            "tradeCollectionCount": 0,
+            "commercialFraudRiskIndicatorCount": 1,
+            "oldestBankruptcyDate": null,
+            "mostRecentBankruptcyDate": null,
+            "oldestTaxLienDate": null,
+            "mostRecentTaxLienDate": null,
+            "oldestJudgmentDate": null,
+            "mostRecentJudgmentDate": null,
+            "oldestCollectionDate": null,
+            "mostRecentCollectionDate": null,
+            "monthlyAverageDbt": 0,
+            "taxLienCount": null,
+            "judgmentCount": null,
+            "collectionCount": null,
+            "collectionCountPast24Months": null,
+            "collectionBalance": null,
+            "legalBalance": null,
+            "currentAccountBalance": null,
+            "currentTradelineCount": null,
+            "activeTradelineCount": null,
+            "currentDbt": null,
+            "uccFilings": null,
+            "uccDerogatoryCount": null,
+            "highestDbt6Months": 0,
+            "highestDbt5Quarters": 0,
+            "oldestUccDate": null,
+            "mostRecentUccDate": null,
+            "bankruptcyIndicator": false,
+            "allTradelineBalance": null,
+            "allTradelineCount": null,
+            "bankruptcyCount": null,
+            "averageBalance5Quarters": null,
+            "highBalance6Months": null,
+            "lowBalance6Months": null,
+            "openCollectionBalance": null,
+            "openCollectionCount": null,
+            "singleHighCredit": null,
+            "tradeCollectionBalance": null,
+            "judgmentIndicator": false,
+            "taxLienIndicator": false,
+            "ofacMatchWarning": {
+                "code": "N",
+                "definition": "This business did not match to OFAC"
+            },
+            "victimStatementIndicator": true,
+            "unsummarizedTradelineCount": null
+        },
+        "executiveSummary": {
+            "businessDbt": {},
+            "predictedDbtDate": null,
+            "industryDbt": null,
+            "allIndustryDbt": null,
+            "industryPaymentComparison": {},
+            "paymentTrendIndicator": {},
+            "commonTerms": {},
+            "lowestTotalAccountBalance": null,
+            "highestTotalAccountBalance": null,
+            "currentTotalAccountBalance": null
+        },
+        "commercialGovernmentEntityCode": null,
+        "economicDiversity": {
+            "minorityOwnedIndicator": null,
+            "womenOwnedIndicator": null,
+            "disadvantagedIndicator": null,
+            "sba8aIndicator": null,
+            "hubZoneIndicator": null,
+            "veteranOwnedIndicator": null,
+            "disabledVeteranOwnedIndicator": null,
+            "historicalBlackCollegeAndUniversitiesIndicator": null,
+            "sbaCertifiedIndicator": null
+        },
+        "governmentActivity": {
+            "activeDate": null,
+            "terminationDate": null
+        },
+        "tradePaymentExperiences": null,
+        "additionalPaymentExperiences": null,
+        "paymentTotals": null,
+        "monthlyPaymentTrends": null,
+        "industryPaymentTrends": null,
+        "quarterlyPaymentTrends": null,
+        "collectionsDetail": [],
+        "bankruptcyDetail": [],
+        "taxLienDetail": [],
+        "uccFilingsSummary": {
+            "uccFilingsTrends": []
+        },
+        "uccFilingsDetail": [
+            null
+        ],
+        "judgmentDetail": [],
+        "uccCoDebtors": [],
+        "executiveInformation": [],
+        "commercialFraudShieldSummary": {
+            "matchingBusinessIndicator": "Primary Business",
+            "activeBusinessIndicator": false,
+            "businessVictimStatementIndicator": true,
+            "businessRiskTriggersIndicator": false,
+            "nameAddressVerificationIndicator": true,
+            "ofacMatchWarning": {
+                "code": 1,
+                "definition": "No Match Found"
+            },
+            "businessRiskTriggersStatement": []
+        },
+        "corporateLinkage": [],
+        "inquiries": [
+            {
+                "inquiryBusinessCategory": "BUREAU",
+                "inquiryCount": [
+                    {
+                        "month": 3,
+                        "year": 2020,
+                        "count": 0
+                    },
+                    {
+                        "month": 2,
+                        "year": 2020,
+                        "count": 0
+                    },
+                    {
+                        "month": 1,
+                        "year": 2020,
+                        "count": 0
+                    },
+                    {
+                        "month": 12,
+                        "year": 2019,
+                        "count": 0
+                    },
+                    {
+                        "month": 11,
+                        "year": 2019,
+                        "count": 0
+                    },
+                    {
+                        "month": 10,
+                        "year": 2019,
+                        "count": 0
+                    },
+                    {
+                        "month": 9,
+                        "year": 2019,
+                        "count": 1
+                    },
+                    {
+                        "month": 8,
+                        "year": 2019,
+                        "count": 0
+                    },
+                    {
+                        "month": 7,
+                        "year": 2019,
+                        "count": 0
+                    }
+                ]
+            },
+            {
+                "inquiryBusinessCategory": "EQUIP LEAS",
+                "inquiryCount": [
+                    {
+                        "month": 3,
+                        "year": 2020,
+                        "count": 1
+                    },
+                    {
+                        "month": 2,
+                        "year": 2020,
+                        "count": 1
+                    },
+                    {
+                        "month": 1,
+                        "year": 2020,
+                        "count": 1
+                    },
+                    {
+                        "month": 12,
+                        "year": 2019,
+                        "count": 1
+                    },
+                    {
+                        "month": 11,
+                        "year": 2019,
+                        "count": 1
+                    },
+                    {
+                        "month": 10,
+                        "year": 2019,
+                        "count": 1
+                    },
+                    {
+                        "month": 9,
+                        "year": 2019,
+                        "count": 0
+                    },
+                    {
+                        "month": 8,
+                        "year": 2019,
+                        "count": 1
+                    },
+                    {
+                        "month": 7,
+                        "year": 2019,
+                        "count": 0
+                    }
+                ]
+            },
+            {
+                "inquiryBusinessCategory": "FINCL SVCS",
+                "inquiryCount": [
+                    {
+                        "month": 3,
+                        "year": 2020,
+                        "count": 0
+                    },
+                    {
+                        "month": 2,
+                        "year": 2020,
+                        "count": 1
+                    },
+                    {
+                        "month": 1,
+                        "year": 2020,
+                        "count": 2
+                    },
+                    {
+                        "month": 12,
+                        "year": 2019,
+                        "count": 0
+                    },
+                    {
+                        "month": 11,
+                        "year": 2019,
+                        "count": 0
+                    },
+                    {
+                        "month": 10,
+                        "year": 2019,
+                        "count": 2
+                    },
+                    {
+                        "month": 9,
+                        "year": 2019,
+                        "count": 1
+                    },
+                    {
+                        "month": 8,
+                        "year": 2019,
+                        "count": 2
+                    },
+                    {
+                        "month": 7,
+                        "year": 2019,
+                        "count": 2
+                    }
+                ]
+            },
+            {
+                "inquiryBusinessCategory": "GENERAL",
+                "inquiryCount": [
+                    {
+                        "month": 3,
+                        "year": 2020,
+                        "count": 3
+                    },
+                    {
+                        "month": 2,
+                        "year": 2020,
+                        "count": 7
+                    },
+                    {
+                        "month": 1,
+                        "year": 2020,
+                        "count": 16
+                    },
+                    {
+                        "month": 12,
+                        "year": 2019,
+                        "count": 7
+                    },
+                    {
+                        "month": 11,
+                        "year": 2019,
+                        "count": 5
+                    },
+                    {
+                        "month": 10,
+                        "year": 2019,
+                        "count": 9
+                    },
+                    {
+                        "month": 9,
+                        "year": 2019,
+                        "count": 6
+                    },
+                    {
+                        "month": 8,
+                        "year": 2019,
+                        "count": 9
+                    },
+                    {
+                        "month": 7,
+                        "year": 2019,
+                        "count": 7
+                    }
+                ]
+            },
+            {
+                "inquiryBusinessCategory": "TOTALS",
+                "inquiryCount": [
+                    {
+                        "month": 3,
+                        "year": 2020,
+                        "count": 4
+                    },
+                    {
+                        "month": 2,
+                        "year": 2020,
+                        "count": 9
+                    },
+                    {
+                        "month": 1,
+                        "year": 2020,
+                        "count": 19
+                    },
+                    {
+                        "month": 12,
+                        "year": 2019,
+                        "count": 8
+                    },
+                    {
+                        "month": 11,
+                        "year": 2019,
+                        "count": 6
+                    },
+                    {
+                        "month": 10,
+                        "year": 2019,
+                        "count": 12
+                    },
+                    {
+                        "month": 9,
+                        "year": 2019,
+                        "count": 8
+                    },
+                    {
+                        "month": 8,
+                        "year": 2019,
+                        "count": 12
+                    },
+                    {
+                        "month": 7,
+                        "year": 2019,
+                        "count": 9
+                    }
+                ]
+            }
+        ],
+        "proprietorNameAndAddress": [],
+        "competitors": [],
+        "commercialBankInformation": [],
+        "leasingInformation": [],
+        "licenseDetails": [],
+        "bondDetails": [],
+        "insuranceDetails": [],
+        "scoreInformation": {
+            "fsrScore": {
+                "publiclyHeldCompany": false,
+                "limitedProfile": false,
+                "score": 5,
+                "profileNumber": "I401965409",
+                "modelCode": "000223",
+                "modelTitle": "FINANCIAL STABILITY RISK",
+                "percentileRanking": 4,
+                "probability": null,
+                "riskClass": {
+                    "code": 5,
+                    "definition": "MEDIUM TO HIGH RISK"
+                },
+                "customerDisputeIndicator": false
+            },
+            "commercialScore": {
+                "publiclyHeldCompany": false,
+                "limitedProfile": false,
+                "score": 28,
+                "profileNumber": "I401965409",
+                "modelCode": "000224",
+                "modelTitle": "INTELLISCORE PLUS V2",
+                "percentileRanking": 27,
+                "probability": null,
+                "riskClass": {
+                    "code": 3,
+                    "definition": "MEDIUM RISK"
+                },
+                "customerDisputeIndicator": false,
+                "customModelCode": "01",
+                "recommendedCreditLimitAmount": 1200,
+                "highCreditLimitAmount": null
+            },
+            "fsrScoreFactors": [
+                {
+                    "code": "017",
+                    "definition": "LACK OF ACTIVE TRADES"
+                },
+                {
+                    "code": "002",
+                    "definition": "RISK ASSOCIATED WITH THE BUSINESS TYPE"
+                },
+                {
+                    "code": "003",
+                    "definition": "EMPLOYEE SIZE OF BUSINESS"
+                },
+                {
+                    "code": "004",
+                    "definition": "RISK ASSOCIATED WITH THE COMPANY'S INDUSTRY SECTOR"
+                }
+            ],
+            "commercialScoreFactors": [
+                {
+                    "code": "017",
+                    "definition": "RISK ASSOCIATED WITH THE COMPANY'S INDUSTRY"
+                },
+                {
+                    "code": "015",
+                    "definition": "COMPANY'S BUSINESS TYPE"
+                }
+            ],
+            "commercialScoreTrends": [
+                {
+                    "quarter": "JAN-MAR",
+                    "score": 28,
+                    "industryScore": null
+                },
+                {
+                    "quarter": "OCT-DEC",
+                    "score": 28,
+                    "industryScore": null
+                },
+                {
+                    "quarter": "JUL-SEP",
+                    "score": 28,
+                    "industryScore": null
+                },
+                {
+                    "quarter": "APR-JUN",
+                    "score": 28,
+                    "industryScore": null
+                }
+            ],
+            "fsrScoreTrends": [
+                {
+                    "quarter": "JAN-MAR",
+                    "score": 5,
+                    "industryScore": null
+                },
+                {
+                    "quarter": "OCT-DEC",
+                    "score": 5,
+                    "industryScore": null
+                },
+                {
+                    "quarter": "JUL-SEP",
+                    "score": 5,
+                    "industryScore": null
+                },
+                {
+                    "quarter": "APR-JUN",
+                    "score": 5,
+                    "industryScore": null
+                }
+            ]
+        },
+        "sicCodes": [
+            {
+                "code": "7374",
+                "definition": "COMPUTER PROCESSING & DATA PREP SVCS"
+            },
+            {
+                "code": "7372",
+                "definition": "COMPUTER SOFTWARE, PREPACKAGED"
+            }
+        ],
+        "naicsCodes": [
+            {
+                "code": "518210",
+                "definition": "Dat.    essing,Hosting, and Related Servic"
+            },
+            {
+                "code": "511210",
+                "definition": "Software Publishers"
+            }
+        ],
+        "fortune1000": null,
+        "corporateFinancialInformation": {
+            "currentDate": null,
+            "fiscalYearEndDate": null,
+            "balanceSheets": [],
+            "operatingStatements": [],
+            "criticalDataAndFinancialRatios": []
+        },
+        "contractSpendingSummary": null,
+        "contractSpendingDetail": [],
+        "consumerStatement": [
+            {
+                "type": {
+                    "code": "  ",
+                    "definition": "Not Available"
+                },
+                "dateReported": "2008-12-28",
+                "text": "BUSINESS REQUESTS CONTACT PRIOR TO GRANTING CREDIT"
+            }
+        ],
+        "stocks": {}
+    }
+}

@@ -19,6 +19,12 @@
   }
 
   .card-body {
-    height: calc(100vh - 201px);
+    /* height: calc(100vh - 201px); */
+  }
+
+  .json-report-view {
+    * {
+      background-color: transparent !important;
+    }
   }
 }
