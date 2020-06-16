@@ -58,6 +58,15 @@
                       "required": true,
                       "validation": "onlyLetters",
                       "value": ""
+                    },
+                    {
+                      "label": "DateOfBirth",
+                      "name": "DOB",
+                      "type": "text",
+                      "colWidth": "col-md-4",
+                      "required": true,
+                      "validation": "",
+                      "value": ""
                     }
                   ]
                 }
@@ -84,6 +93,14 @@
                     {
                       "label": "Residential address line 1",
                       "name": "addr1",
+                      "colWidth": "col-md-4",
+                      "type": "textarea",
+                      "required": true,
+                      "value": ""
+                    },
+                    {
+                      "label": "Apt No",
+                      "name": "aptNo",
                       "colWidth": "col-md-4",
                       "type": "textarea",
                       "required": true,
