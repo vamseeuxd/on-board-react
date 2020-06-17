@@ -93,7 +93,7 @@
                     {
                       "label": "Residential address line 1",
                       "name": "addr1",
-                      "colWidth": "col-md-4",
+                      "colWidth": "col-md-6",
                       "type": "textarea",
                       "required": true,
                       "value": ""
@@ -101,7 +101,7 @@
                     {
                       "label": "Residential address line 2",
                       "name": "addr2",
-                      "colWidth": "col-md-4",
+                      "colWidth": "col-md-6",
                       "type": "textarea",
                       "required": false,
                       "value": ""
