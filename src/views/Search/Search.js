@@ -19,7 +19,6 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'reactstrap';
-import searchData from './SearchData';
 import ReactPaginate from 'react-paginate';
 
 function SearchRow(props) {
@@ -49,20 +48,46 @@ class Search extends Component {
     this.state = {
       modal: false,
       selectedSearchItem: null,
+      searchBy: "firstName",
+      searchCondition: "=",
+      searchByValue: "",
+      globalSearch: "",
       searches: [],
+      masterSearchData: [],
+      searchData: [],
       searchDetails: [],
       pageSize: 5,
       showPaginationDropdown: false,
       currentPage: 0,
     }
     this.searchClick = this.searchClick.bind(this);
+    this.getSearchPageData = this.getSearchPageData.bind(this);
+    this.setSearchBy = this.setSearchBy.bind(this);
+    this.setSearchCondition = this.setSearchCondition.bind(this);
+    this.setSearchByValue = this.setSearchByValue.bind(this);
+    this.applySearchByFilter = this.applySearchByFilter.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.togglePaginationDropdown = this.togglePaginationDropdown.bind(this);
     this.handlePageClick = this.handlePageClick.bind(this);
+    this.handleGlobalSearch = this.handleGlobalSearch.bind(this);
+    this.getSearchPageData();
+  }
+
+  getSearchPageData() {
+    fetch('./assets/data/search-data.json')
+      .then((res) => res.json())
+      .then((searchData) => {
+        /** -- Clone Search Data for future reference --
+         *  -- this data should not applied with any filters, --
+         *  -- on reset / clear filter this data will utilized --
+         * */
+        const masterSearchData = JSON.parse(JSON.stringify(searchData));
+        this.setState({searchData, masterSearchData});
+      });
   }
 
   searchClick() {
-    const searches = searchData.find(search => search.id.toString() === this.props.match.params.id)
+    const searches = this.state.searchData.find(search => search.id.toString() === this.props.match.params.id)
     const searchDetails = searches ? Object.entries(searches) : [['id', (
       <span><i className="text-muted icon-ban"></i> Not found</span>)]];
     this.setState({searchDetails, searches});
@@ -74,8 +99,7 @@ class Search extends Component {
 
   togglePaginationDropdown(pageSize) {
     if (pageSize) {
-      const pageCount = Math.ceil(searchData.length / pageSize);
-      // debugger;
+      const pageCount = Math.ceil(this.state.searchData.length / pageSize);
       if (this.state.currentPage > (pageCount - 1)) {
         this.setState(
           {
@@ -97,10 +121,66 @@ class Search extends Component {
     this.setState({currentPage: data.selected});
   }
 
+  handleGlobalSearch(event) {
+    this.setState({searchByValue: ''});
+    const globalSearch = event.target.value;
+    this.setState({globalSearch});
+    if (globalSearch.toString().trim().length > 0) {
+      const searchData = this.state.masterSearchData.filter(data => {
+        const keys = Object.keys(data);
+        let isReferenceFound = false;
+        keys.forEach(key => {
+          if (data[key].toString().toLowerCase().indexOf(globalSearch.toString().toLowerCase()) >= 0) {
+            isReferenceFound = true;
+          }
+        })
+        return isReferenceFound;
+      });
+      this.setState({searchData});
+    } else {
+      const searchData = JSON.parse(JSON.stringify(this.state.masterSearchData));
+      this.setState({searchData});
+    }
+  }
+
+  setSearchBy(searchBy) {
+    this.setState({searchBy});
+  }
+
+  setSearchCondition(searchCondition) {
+    this.setState({searchCondition});
+  }
+
+  setSearchByValue(searchByValue) {
+    this.setState({searchByValue});
+  }
+
+  applySearchByFilter() {
+    this.setState({globalSearch: ''});
+    if (this.state.searchByValue.toString().trim().length > 0) {
+      const searchData = this.state.masterSearchData.filter(data => {
+        switch (this.state.searchCondition) {
+          case '=':
+            return data[this.state.searchBy].toString().toLowerCase() === this.state.searchByValue.toLowerCase();
+            break;
+          case '>':
+            break;
+          case '<':
+            break;
+          case '>=<':
+            return data[this.state.searchBy].toString().toLowerCase().indexOf(this.state.searchByValue.toLowerCase()) >= 0;
+            break;
+        }
+      });
+      this.setState({searchData});
+    } else {
+      const searchData = JSON.parse(JSON.stringify(this.state.masterSearchData));
+      this.setState({searchData});
+    }
+  }
+
   render() {
-
-    const pageCount = Math.ceil(searchData.length / this.state.pageSize);
-
+    const pageCount = Math.ceil(this.state.searchData.length / this.state.pageSize);
     return (
       <div className="animated fadeIn">
         <Row>
@@ -114,33 +194,44 @@ class Search extends Component {
                            type="select"
                            name="searchBy"
                            id="searchBy"
+                           onChange={e => this.setSearchBy(e.target.value)}
+                           value={this.state.searchBy}
                            placeholder="Search By">
-                      <option>App ID</option>
-                      <option>SSN</option>
-                      <option>First Name</option>
+                      <option value="id">App ID</option>
+                      <option value="firstName">First Name</option>
+                      <option value="lastName">Last Name</option>
+                      <option value="ssn">SSN</option>
                     </Input>
                   </FormGroup>
+
                   <FormGroup className="col-md-3">
                     <Input autoComplete="off"
                            type="select"
                            name="condition"
                            id="condition"
+                           onChange={e => this.setSearchCondition(e.target.value)}
+                           value={this.state.searchCondition}
                            placeholder="Select Condition">
-                      <option>Greater Than</option>
-                      <option>Less Than</option>
-                      <option>Equal to</option>
+                      <option value=">">Greater Than</option>
+                      <option value="<">Less Than</option>
+                      <option value="=">Equal to</option>
+                      <option value=">=<">Contains</option>
                     </Input>
                   </FormGroup>
+
                   <FormGroup className="col-md-3">
                     <Input autoComplete="off"
                            type="text"
                            name="Search Value"
-                           id="searchBy"
+                           id="searchByValue"
+                           onChange={e => this.setSearchByValue(e.target.value)}
+                           value={this.state.searchByValue}
                            placeholder="Value"/>
                   </FormGroup>
+
                   <div className="col-md-2">
                     <Button type="button"
-                            onClick={this.searchClick}>Search</Button>
+                            onClick={this.applySearchByFilter}>Search</Button>
                   </div>
                 </Form>
               </CardBody>
@@ -151,10 +242,46 @@ class Search extends Component {
           <Col lg={12}>
             <Card>
               <CardBody>
+                {/* ___________________ Global Search ___________________ */}
+                <FormGroup className="col-md-3 float-left">
+                  <Input autoComplete="off"
+                         type="text"
+                         name="Search Value"
+                         id="globalSearch"
+                         onChange={this.handleGlobalSearch}
+                         value={this.state.globalSearch}
+                         placeholder="Global Search"/>
+                </FormGroup>
 
-                <div className="text-right">
+                <div>
+                  {/* ___________________ Pagination ___________________ */}
+                  <div className="d-inline-block ml-2 float-right">
+                    <ReactPaginate
+                      previousLabel={'<'}
+                      nextLabel={'>'}
+                      breakLabel={'...'}
+                      pageCount={pageCount}
+                      marginPagesDisplayed={2}
+                      pageRangeDisplayed={2}
+                      forcePage={this.state.currentPage}
+                      pageLinkClassName="page-link btn btn-link rounded-0"
+                      previousLinkClassName="page-link btn btn-link rounded-0"
+                      nextLinkClassName="page-link btn btn-link rounded-0"
+                      breakLinkClassName="page-link btn btn-link rounded-0"
+                      activeClassName="active"
+                      pageClassName="page-item"
+                      previousClassName="page-item"
+                      breakClassName="page-item"
+                      nextClassName="page-item"
+                      disabledClassName="disabled"
+                      containerClassName="pagination text-right"
+                      onPageChange={this.handlePageClick}
+                    />
+                  </div>
+
+                  {/* ___________________ Show Dropdown ___________________ */}
                   <Dropdown group
-                            className="m-2"
+                            className="float-right"
                             isOpen={this.state.showPaginationDropdown}
                             size="sm"
                             toggle={() => this.togglePaginationDropdown(null)}>
@@ -187,29 +314,7 @@ class Search extends Component {
                     </DropdownMenu>
                   </Dropdown>
 
-                  <div className="d-inline-block">
-                    <ReactPaginate
-                      previousLabel={'<'}
-                      nextLabel={'>'}
-                      breakLabel={'...'}
-                      pageCount={pageCount}
-                      marginPagesDisplayed={2}
-                      pageRangeDisplayed={2}
-                      forcePage={this.state.currentPage}
-                      pageLinkClassName="page-link btn btn-link rounded-0"
-                      previousLinkClassName="page-link btn btn-link rounded-0"
-                      nextLinkClassName="page-link btn btn-link rounded-0"
-                      breakLinkClassName="page-link btn btn-link rounded-0"
-                      activeClassName="active"
-                      pageClassName="page-item"
-                      previousClassName="page-item"
-                      breakClassName="page-item"
-                      nextClassName="page-item"
-                      disabledClassName="disabled"
-                      containerClassName="pagination text-right"
-                      onPageChange={this.handlePageClick}
-                    />
-                  </div>
+
                 </div>
 
                 <Table responsive
@@ -233,7 +338,7 @@ class Search extends Component {
                   </thead>
                   <tbody>
                   {
-                    searchData
+                    this.state.searchData
                       .slice(
                         this.state.currentPage * this.state.pageSize,
                         (this.state.currentPage + 1) * this.state.pageSize
