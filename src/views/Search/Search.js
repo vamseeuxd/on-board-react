@@ -60,7 +60,6 @@ class Search extends Component {
       showPaginationDropdown: false,
       currentPage: 0,
     }
-    this.searchClick = this.searchClick.bind(this);
     this.getSearchPageData = this.getSearchPageData.bind(this);
     this.setSearchBy = this.setSearchBy.bind(this);
     this.setSearchCondition = this.setSearchCondition.bind(this);
@@ -84,13 +83,6 @@ class Search extends Component {
         const masterSearchData = JSON.parse(JSON.stringify(searchData));
         this.setState({searchData, masterSearchData});
       });
-  }
-
-  searchClick() {
-    const searches = this.state.searchData.find(search => search.id.toString() === this.props.match.params.id)
-    const searchDetails = searches ? Object.entries(searches) : [['id', (
-      <span><i className="text-muted icon-ban"></i> Not found</span>)]];
-    this.setState({searchDetails, searches});
   }
 
   toggleModal(selectedSearchItem) {
@@ -144,7 +136,7 @@ class Search extends Component {
   }
 
   setSearchBy(searchBy) {
-    this.setState({searchBy});
+    this.setState({searchBy, searchCondition: '=', searchByValue: ''});
   }
 
   setSearchCondition(searchCondition) {
@@ -152,7 +144,14 @@ class Search extends Component {
   }
 
   setSearchByValue(searchByValue) {
-    this.setState({searchByValue});
+    if (this.state.searchBy === 'id' && this.state.searchByValue.trim().length > 0) {
+      if (!isNaN(searchByValue)) {
+        const convertedNumber = Number(searchByValue);
+        this.setState({searchByValue});
+      }
+    } else {
+      this.setState({searchByValue});
+    }
   }
 
   applySearchByFilter() {
@@ -161,14 +160,32 @@ class Search extends Component {
       const searchData = this.state.masterSearchData.filter(data => {
         switch (this.state.searchCondition) {
           case '=':
-            return data[this.state.searchBy].toString().toLowerCase() === this.state.searchByValue.toLowerCase();
+            if (this.state.searchBy != 'id') {
+              return data[this.state.searchBy].toString().toLowerCase() === this.state.searchByValue.toLowerCase();
+            } else {
+              return data[this.state.searchBy] == this.state.searchByValue;
+            }
             break;
           case '>':
+            if (this.state.searchBy == 'id') {
+              return data[this.state.searchBy] > this.state.searchByValue;
+            } else {
+              return false;
+            }
             break;
           case '<':
+            if (this.state.searchBy == 'id') {
+              return data[this.state.searchBy] < this.state.searchByValue;
+            } else {
+              return false;
+            }
             break;
           case '>=<':
-            return data[this.state.searchBy].toString().toLowerCase().indexOf(this.state.searchByValue.toLowerCase()) >= 0;
+            if (this.state.searchBy != 'id') {
+              return data[this.state.searchBy].toString().toLowerCase().indexOf(this.state.searchByValue.toLowerCase()) >= 0;
+            } else {
+              return false;
+            }
             break;
         }
       });
@@ -212,10 +229,16 @@ class Search extends Component {
                            onChange={e => this.setSearchCondition(e.target.value)}
                            value={this.state.searchCondition}
                            placeholder="Select Condition">
-                      <option value=">">Greater Than</option>
-                      <option value="<">Less Than</option>
+                      <option disabled={this.state.searchBy != 'id'}
+                              value=">">Greater Than
+                      </option>
+                      <option disabled={this.state.searchBy != 'id'}
+                              value="<">Less Than
+                      </option>
                       <option value="=">Equal to</option>
-                      <option value=">=<">Contains</option>
+                      <option disabled={this.state.searchBy == 'id'}
+                              value=">=<">Contains
+                      </option>
                     </Input>
                   </FormGroup>
 
