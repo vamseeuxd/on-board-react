@@ -133,7 +133,7 @@ class FormModel extends React.Component {
                         className="form-control"
                         id={fieldId}
                         onChange={this.props.changed}
-                        style={mystyle}>
+                        >
                   {options}
                 </select>
               </div>
